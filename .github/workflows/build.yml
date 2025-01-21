@@ -2,9 +2,11 @@ name: API Documentation
 
 on:
   push:
-    branches: [ development ]
+    branches: [ "main", "master", "development", "feature/**", "release/**" ]
   pull_request:
-    branches: [ development ]
+    branches: [ "main", "master", "development" ]
+  schedule:
+    - cron: '5 2 * * *' # daily at 2:05
 
 jobs:
   build-and-test:
