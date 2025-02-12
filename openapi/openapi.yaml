@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: Example API
+  title: API First with Spring Boot
   termsOfService: https://example.com/terms/
   contact:
     name: Contact our support
