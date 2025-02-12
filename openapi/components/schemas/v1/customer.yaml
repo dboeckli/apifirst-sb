@@ -1,0 +1,6 @@
+type: object
+properties:
+  firstName:
+    type: string
+    description: The first name of the customer.
+    example: John
