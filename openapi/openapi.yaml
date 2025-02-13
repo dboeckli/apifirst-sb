@@ -27,59 +27,34 @@ tags:
     description: "Customer operations."
   - name: Product
     description: "Product operations."
-  - name: Echo
-    description: "Example echo operations."
-  - name: User
-    description: "Example actions on user accounts."
-  - name: Admin
-    description: "Example operations reserved for administrators."
-  - name: Info
-    description: "Example operations for retrieving information."
-  - name: Tag
-    description: "This is a tag description."
-x-tagGroups:
-  - name: General
-    tags:
-      - User
-      - Info
-      - Echo
-  - name: Administration
-    tags:
-      - Admin
+
 servers:
   - url: https://{tenant}/api/v1
     variables:
       tenant:
         default: www
         description: Your tenant id
-  - url: https://example.com/api/v1
+  - url: https://springframework.guru/api/v1
+
+x-tagGroups:
+  - name: General
+    tags:
+      - Customer
+      - Product
+
 paths:
   '/v1/customers':
     $ref: 'paths/v1/customers.yaml'
-
   '/v1/customers/{customer_id}':
     $ref: 'paths/v1/customers_{customer_id}.yaml'
-
   '/v1/products':
     $ref: 'paths/v1/products.yaml'
-
   '/v1/products/{product_id}':
     $ref: 'paths/v1/products{product_id}.yaml'
 
-  '/users/{username}':
-    $ref: 'paths/users_{username}.yaml'
-  '/user':
-    $ref: 'paths/user.yaml'
-  '/user/list':
-    $ref: 'paths/user-status.yaml'
-  /pathItem:
-    $ref: paths/pathItem.yaml
-  /pathItemWithExamples:
-    $ref: paths/pathItemWithExamples.yaml
-  '/echo':
-    $ref: 'paths/echo.yaml'
 security:
   - basic_auth: []
+
 components:
   securitySchemes:
     main_auth:
@@ -99,21 +74,3 @@ components:
     basic_auth:
       type: http
       scheme: basic
-webhooks:
-  userInfo:
-    post:
-      summary: New user webhook
-      description: "Information about a new user in the system."
-      operationId: userInfo
-      tags:
-        - Info
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: 'components/schemas/User.yaml'
-      responses:
-        '200':
-          description: "Successfully retrieved information about a new user."
-      security:
-        - api_key: []
