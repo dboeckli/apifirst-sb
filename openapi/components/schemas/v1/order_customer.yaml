@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the customer
+  name:
+    $ref: name.yaml
+  shipToAddress:
+    $ref: address.yaml
+  billToAddress:
+    $ref: address.yaml
+  email:
+    type: string
+    description: The email address of the customer
+  phone:
+    type: string
+    description: The phone number of the customer
+  selectedPaymentMethod:
+    $ref: payment_method.yaml
