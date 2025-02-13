@@ -3,6 +3,7 @@ properties:
   id:
     type: string
     format: uuid
+    readOnly: true
     description: Unique identifier representing a specific address
   addressLine1:
     type: string
@@ -11,7 +12,9 @@ properties:
     description: First line of the address
     example: 123 Main Street
   addressLine2:
-    type: string
+    type:
+      - string
+      - 'null'
     minLength: 3
     maxLength: 100
     description: Second line of the address (optional)
@@ -33,6 +36,14 @@ properties:
     maxLength: 10
     description: Zip Code
     example: 10001
+  dateCreated:
+    type: string
+    format: date-time
+    readOnly: true
+  dateUpdated:
+    type: string
+    format: date-time
+    readOnly: true
 required:
   - addressLine1
   - city

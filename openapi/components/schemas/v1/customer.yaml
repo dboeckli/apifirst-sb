@@ -12,12 +12,14 @@ properties:
   billToAddress:
     $ref: address.yaml
   email:
-    type: string
+    type: [string, 'null']
     format: email
     description: The customer's email address.
     example: dboeckli@gmail.com
   phone:
-    type: string
+    type:
+      - string
+      - 'null'
     pattern: '^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$'
     minLength: 7
     maxLength: 15
@@ -27,6 +29,14 @@ properties:
     type: array
     items:
       $ref: payment_method.yaml
+  dateCreated:
+    type: string
+    format: date-time
+    readOnly: true
+  dateUpdated:
+    type: string
+    format: date-time
+    readOnly: true
 required:
   - name
   - shipToAddress
