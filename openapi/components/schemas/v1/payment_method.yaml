@@ -3,6 +3,7 @@ properties:
   id:
     type: string
     format: uuid
+    readOnly: true
     description: Unique Identifier representing a specific payment method
   displayName:
     type: string
@@ -30,6 +31,14 @@ properties:
   dateCreated:
     type: string
     format: date-time
+    readOnly: true
   dateUpdated:
     type: string
     format: date-time
+    readOnly: true
+required:
+  - displayName
+  - cardNumber
+  - expiryMonth
+  - expiryYear
+  - cvv
