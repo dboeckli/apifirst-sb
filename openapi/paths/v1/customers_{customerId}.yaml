@@ -5,7 +5,7 @@ get:
   description: Get a customer by ID
   operationId: getCustomerById
   parameters:
-    - name: customer_id
+    - name: customerId
       in: path
       description: ID of the customer to retrieve
       required: true

@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the order line
+  product:
+    $ref: order_product.yaml
+  order_quantity:
+    type: integer
+    description: The quantity of the product in the order
+  ship_quantity:
+    type: integer
+    description: The quantity of the product shipped
+  dateCreated:
+    type: string
+    format: date-time
+    description: The date the image was created
+  dateUpdated:
+    type: string
+    format: date-time
+    description: The date the image was updated

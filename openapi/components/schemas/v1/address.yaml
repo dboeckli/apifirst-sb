@@ -6,16 +6,31 @@ properties:
     description: Unique identifier representing a specific address
   addressLine1:
     type: string
+    minLength: 3
+    maxLength: 100
     description: First line of the address
   addressLine2:
     type: string
+    minLength: 3
+    maxLength: 100
     description: Second line of the address (optional)
   city:
     type: string
+    minLength: 1
+    maxLength: 100
     description: Name of the city
   state:
     type: string
+    minLength: 2
+    maxLength: 2
     description: State
   zip:
     type: string
+    minLength: 4
+    maxLength: 10
     description: Zip Code
+required:
+  - addressLine1
+  - city
+  - state
+  - zip
