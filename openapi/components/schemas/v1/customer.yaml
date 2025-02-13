@@ -4,6 +4,7 @@ properties:
     type: string
     format: uuid
     description: A unique identifier for the customer.
+    readOnly: true
   name:
     $ref: name.yaml
   shipToAddress:
