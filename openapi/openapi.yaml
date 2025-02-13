@@ -17,8 +17,6 @@ info:
     This is an **example** API to demonstrate features of the OpenAPI
     specification.
 
-    # Introduction
-
 externalDocs:
   description: "Find out how to create a GitHub repo for your OpenAPI definition."
   url: 'https://github.com/Redocly/create-openapi-repo'
@@ -27,6 +25,8 @@ tags:
     description: "Customer operations."
   - name: Product
     description: "Product operations."
+  - name: Order
+    description: "Order operations."
 
 servers:
   - url: https://{tenant}/api/v1
@@ -45,12 +45,16 @@ x-tagGroups:
 paths:
   '/v1/customers':
     $ref: 'paths/v1/customers.yaml'
-  '/v1/customers/{customer_id}':
-    $ref: 'paths/v1/customers_{customer_id}.yaml'
+  '/v1/customers/{customerId}':
+    $ref: 'paths/v1/customers_{customerId}.yaml'
   '/v1/products':
     $ref: 'paths/v1/products.yaml'
-  '/v1/products/{product_id}':
-    $ref: 'paths/v1/products{product_id}.yaml'
+  '/v1/products/{productId}':
+    $ref: 'paths/v1/products{productId}.yaml'
+  '/v1/orders':
+    $ref: 'paths/v1/orders.yaml'
+  '/v1/orders/{orderId}':
+    $ref: 'paths/v1/orders{orderId}.yaml'
 
 security:
   - basic_auth: []
