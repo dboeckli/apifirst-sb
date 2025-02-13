@@ -5,16 +5,19 @@ properties:
     minLength: 0
     maxLength: 25
     description: Name Prefix
+    example: Mr.
   firstName:
     type: string
     minLength: 1
     maxLength: 100
     description: First Name
+    example: John
   lastName:
     type: string
     minLength: 1
     maxLength: 100
     description: Last Name
+    example: Thompson
   suffix:
     type: string
     minLength: 0

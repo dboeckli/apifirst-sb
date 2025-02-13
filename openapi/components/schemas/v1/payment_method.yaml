@@ -8,14 +8,25 @@ properties:
     type: string
     minLength: 1
     maxLength: 100
+    example: My Chase Card
   cardNumber:
     type: integer
+    example: 1234567890123456
   expiryMonth:
     type: integer
+    pattern: '^(0[1-9]|1[0-2])$'
+    example: 7
   expiryYear:
     type: integer
+    pattern: '^(20\d{2}|2[1-9]\d{2})$'
+    example: 2025
   cvv:
     type: integer
+    pattern: '^(20\d{2}|2[1-9]\d{2})$'
+    minLength: 3
+    maxLength: 4
+    example: 123
+    description: The Card Verification Value (CVV) of the payment method (3 or 4 digits)
   dateCreated:
     type: string
     format: date-time
