@@ -12,8 +12,14 @@ properties:
     $ref: address.yaml
   email:
     type: string
+    format: email
+    description: The customer's email address.
   phone:
     type: string
+    pattern: '^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$'
+    minLength: 7
+    maxLength: 15
+    description: The customer's phone number.
   paymentMethods:
     type: array
     items:

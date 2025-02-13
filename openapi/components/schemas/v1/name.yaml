@@ -2,13 +2,21 @@ type: object
 properties:
   prefix:
     type: string
+    minLength: 0
+    maxLength: 25
     description: Name Prefix
   firstName:
     type: string
+    minLength: 1
+    maxLength: 100
     description: First Name
   lastName:
     type: string
+    minLength: 1
+    maxLength: 100
     description: Last Name
   suffix:
     type: string
+    minLength: 0
+    maxLength: 25
     description: Name Suffix
