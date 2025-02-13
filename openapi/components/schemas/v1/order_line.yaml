@@ -4,19 +4,31 @@ properties:
     type: string
     format: uuid
     description: The unique identifier of the order line
+    readOnly: true
   product:
     $ref: order_product.yaml
-  order_quantity:
+  orderQuantity:
     type: integer
     description: The quantity of the product in the order
-  ship_quantity:
+    minimum: 1
+    maximum: 10000
+    example: 2
+  shipQuantity:
     type: integer
     description: The quantity of the product shipped
+    minimum: 1
+    maximum: 10000
+    example: 2
   dateCreated:
     type: string
     format: date-time
     description: The date the image was created
+    readOnly: true
   dateUpdated:
     type: string
     format: date-time
     description: The date the image was updated
+    readOnly: true
+required:
+  - product
+  - orderQuantity

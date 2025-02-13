@@ -4,17 +4,29 @@ properties:
     type: string
     format: uuid
     description: The unique identifier of the category
+    readOnly: true
   category:
     type: string
     description: The category of the product
+    minLength: 3
+    maxLength: 25
+    example: Electronics
   description:
     type: string
     description: The description of the category
+    minLength: 3
+    maxLength: 255
+    example: Electronics and Gadgets
   dateCreated:
     type: string
     format: date-time
     description: The date the image was created
+    readOnly: true
   dateUpdated:
     type: string
     format: date-time
     description: The date the image was updated
+    readOnly: true
+required:
+  - category
+  - description

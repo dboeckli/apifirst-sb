@@ -3,10 +3,13 @@ properties:
   id:
     type: string
     format: uuid
+    readOnly: true
     description: The unique identifier of the product
   description:
     type: string
     description: The description of the product
+    minLength: 3
+    maxLength: 255
   dimentions:
     $ref: dimentions.yaml
   categories:
@@ -27,7 +30,12 @@ properties:
     type: string
     format: date-time
     description: The date the image was created
+    readOnly: true
   dateUpdated:
     type: string
     format: date-time
     description: The date the image was updated
+    readOnly: true
+required:
+  - description
+  - price
