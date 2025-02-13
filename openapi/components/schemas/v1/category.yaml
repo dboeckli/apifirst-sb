@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the category
+  category:
+    type: string
+    description: The category of the product
+  description:
+    type: string
+    description: The description of the category
+  dateCreated:
+    type: string
+    format: date-time
+    description: The date the image was created
+  dateUpdated:
+    type: string
+    format: date-time
+    description: The date the image was updated

@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Customer
+  summary: Get a list of customers
+  description: Returns a list of customers
+  operationId: listCustomers
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/v1/customer_list.yaml
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/Problem.yaml

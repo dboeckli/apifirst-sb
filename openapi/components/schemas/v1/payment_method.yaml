@@ -1,0 +1,21 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  displayName:
+    type: string
+  cardNumber:
+    type: integer
+  expiryMonth:
+    type: integer
+  expiryYear:
+    type: integer
+  cvv:
+    type: integer
+  dateCreated:
+    type: string
+    format: date-time
+  dateUpdated:
+    type: string
+    format: date-time
