@@ -29,13 +29,9 @@ properties:
     example: 123
     description: The Card Verification Value (CVV) of the payment method (3 or 4 digits)
   dateCreated:
-    type: string
-    format: date-time
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
   dateUpdated:
-    type: string
-    format: date-time
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
 required:
   - displayName
   - cardNumber

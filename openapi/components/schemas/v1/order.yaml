@@ -21,15 +21,9 @@ properties:
       $ref: order_line.yaml
     description: The order lines of the order
   dateCreated:
-    type: string
-    format: date-time
-    description: The date the image was created
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
   dateUpdated:
-    type: string
-    format: date-time
-    description: The date the image was updated
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
 required:
   - customer
   - orderStatus

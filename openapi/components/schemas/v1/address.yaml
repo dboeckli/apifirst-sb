@@ -37,13 +37,9 @@ properties:
     description: Zip Code
     example: 10001
   dateCreated:
-    type: string
-    format: date-time
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
   dateUpdated:
-    type: string
-    format: date-time
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
 required:
   - addressLine1
   - city
