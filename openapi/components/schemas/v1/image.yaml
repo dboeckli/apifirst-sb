@@ -19,14 +19,8 @@ properties:
     minLength: 3
     maxLength: 255
   dateCreated:
-    type: string
-    format: date-time
-    description: The date the image was created
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
   dateUpdated:
-    type: string
-    format: date-time
-    description: The date the image was updated
-    readOnly: true
+    $ref: ../common/iso_timestamp.yaml
 required:
   -  url
