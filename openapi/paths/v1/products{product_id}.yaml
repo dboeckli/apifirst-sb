@@ -1,13 +1,13 @@
 get:
   tags:
-    - Customer
-  summary: Get a customer by ID
-  description: Get a customer by ID
-  operationId: getCustomerById
+    - Product
+  summary: Get a product by ID
+  description: Get a product by ID
+  operationId: getProductById
   parameters:
-    - name: customer_id
+    - name: product_id
       in: path
-      description: ID of the customer to retrieve
+      description: ID of the product to retrieve
       required: true
       schema:
         type: string
@@ -18,7 +18,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/v1/customer.yaml
+            $ref: "../../components/schemas/v1/product.yaml"
     '400':
       description: Bad Request
       content:

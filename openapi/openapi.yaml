@@ -25,6 +25,8 @@ externalDocs:
 tags:
   - name: Customer
     description: "Customer operations."
+  - name: Product
+    description: "Product operations."
   - name: Echo
     description: "Example echo operations."
   - name: User
@@ -54,8 +56,16 @@ servers:
 paths:
   '/v1/customers':
     $ref: 'paths/v1/customers.yaml'
+
   '/v1/customers/{customer_id}':
     $ref: 'paths/v1/customers_{customer_id}.yaml'
+
+  '/v1/products':
+    $ref: 'paths/v1/products.yaml'
+
+  '/v1/products/{product_id}':
+    $ref: 'paths/v1/products{product_id}.yaml'
+
   '/users/{username}':
     $ref: 'paths/users_{username}.yaml'
   '/user':
