@@ -4,4 +4,6 @@ description: The ID value of the customer. This value is a UUID.
 required: true
 schema:
   type: string
-  format: uuid
+  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+  minLength: 36
+  maxLength: 36
