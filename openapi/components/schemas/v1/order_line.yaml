@@ -1,10 +1,7 @@
 type: object
 properties:
   id:
-    type: string
-    format: uuid
-    description: The unique identifier of the order line
-    readOnly: true
+    $ref: ../common/uuid_id.yaml
   product:
     $ref: order_product.yaml
   orderQuantity:

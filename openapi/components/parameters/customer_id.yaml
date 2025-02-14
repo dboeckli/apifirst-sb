@@ -1,0 +1,7 @@
+name: customerId
+in: path
+description: The ID value of the customer. This value is a UUID.
+required: true
+schema:
+  type: string
+  format: uuid
