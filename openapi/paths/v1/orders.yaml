@@ -10,9 +10,7 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: ../../components/schemas/v1/order_list.yaml
+            $ref: ../../components/schemas/v1/order_list.yaml
     '400':
       description: Bad Request
     '404':

@@ -1,10 +1,7 @@
 type: object
 properties:
   id:
-    type: string
-    format: uuid
-    readOnly: true
-    description: Unique identifier representing a specific address
+    $ref: ../common/uuid_id.yaml
   addressLine1:
     type: string
     minLength: 3

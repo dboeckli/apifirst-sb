@@ -1,9 +1,7 @@
 type: object
 properties:
   id:
-    type: string
-    format: uuid
-    description: The unique identifier of the customer
+    $ref: ../common/uuid_id.yaml
   name:
     $ref: name.yaml
   shipToAddress:

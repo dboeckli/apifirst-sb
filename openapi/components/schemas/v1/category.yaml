@@ -1,10 +1,7 @@
 type: object
 properties:
   id:
-    type: string
-    format: uuid
-    description: The unique identifier of the category
-    readOnly: true
+    $ref: ../common/uuid_id.yaml
   category:
     type: string
     description: The category of the product

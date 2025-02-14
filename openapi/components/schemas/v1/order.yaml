@@ -1,10 +1,7 @@
 type: object
 properties:
   id:
-    type: string
-    format: uuid
-    readOnly: true
-    description: The unique identifier of the order
+    $ref: ../common/uuid_id.yaml
   customer:
     $ref: order_customer.yaml
   orderStatus:
