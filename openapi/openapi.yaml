@@ -41,6 +41,7 @@ x-tagGroups:
     tags:
       - Customer
       - Product
+      - Order
 
 paths:
   '/v1/customers':
