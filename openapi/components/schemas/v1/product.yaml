@@ -11,8 +11,8 @@ properties:
     description: The description of the product
     minLength: 3
     maxLength: 255
-  dimentions:
-    $ref: dimentions.yaml
+  dimensions:
+    $ref: dimensions.yaml
   categories:
     type: array
     items:
