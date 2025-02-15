@@ -1,9 +1,8 @@
 type: object
 properties:
   prefix:
-    type:
-      - string
-      - 'null'
+    type: string
+    nullable: true
     minLength: 0
     maxLength: 25
     description: Name Prefix
@@ -21,9 +20,8 @@ properties:
     description: Last Name
     example: Thompson
   suffix:
-    type:
-      - string
-      - 'null'
+    type: string
+    nullable: true
     minLength: 0
     maxLength: 25
     description: Name Suffix
