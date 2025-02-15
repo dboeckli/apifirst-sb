@@ -1,7 +1,11 @@
 type: object
 properties:
   id:
-    $ref: ../common/uuid_id.yaml
+    type: string
+    format: uuid
+    description: System generated unique identifier for the payment method.
+    readOnly: true
+    nullable: true
   displayName:
     type: string
     minLength: 1
