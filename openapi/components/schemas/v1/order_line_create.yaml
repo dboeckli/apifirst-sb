@@ -1,0 +1,14 @@
+type: object
+properties:
+  productId:
+    type: string
+    format: uuid
+  orderQuantity:
+    type: integer
+    format: int32
+    minimum: 1
+    maximum: 1000
+    example: 2
+required:
+  - productId
+  - orderQuantity
