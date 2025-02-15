@@ -1,7 +1,11 @@
 type: object
 properties:
   id:
-    $ref: ../common/uuid_id.yaml
+    type: string
+    format: uuid
+    description: System generated unique identifier for the address.
+    readOnly: true
+    nullable: true
   addressLine1:
     type: string
     minLength: 3

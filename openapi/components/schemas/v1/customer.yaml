@@ -1,7 +1,11 @@
 type: object
 properties:
   id:
-    $ref: ../common/uuid_id.yaml
+    type: string
+    format: uuid
+    description: System generated unique identifier for the customer.
+    readOnly: true
+    nullable: true
   name:
     $ref: name.yaml
   shipToAddress:
@@ -24,6 +28,7 @@ properties:
     example: +1 (123) 456-7890
   paymentMethods:
     type: array
+    nullable: true
     items:
       $ref: payment_method.yaml
   dateCreated:
