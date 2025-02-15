@@ -10,6 +10,7 @@ properties:
     default: NEW
   shipmentInfo:
     type: string
+    nullable: true
     minLength: 1
     maxLength: 255
   orderLines:
