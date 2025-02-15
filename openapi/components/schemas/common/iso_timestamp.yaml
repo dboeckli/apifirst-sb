@@ -5,3 +5,4 @@ description: ISO 8601 Timestamp. Date Created and Date Updated are system manage
 example: 2022-08-22T11:43:06-07:00
 title: ISO Timestamp
 readOnly: true
+nullable: true

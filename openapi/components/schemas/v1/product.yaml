@@ -1,7 +1,11 @@
 type: object
 properties:
   id:
-    $ref: ../common/uuid_id.yaml
+    type: string
+    format: uuid
+    description: System generated unique identifier for the product.
+    readOnly: true
+    nullable: true
   description:
     type: string
     description: The description of the product
