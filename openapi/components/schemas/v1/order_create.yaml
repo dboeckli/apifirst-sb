@@ -3,7 +3,7 @@ properties:
   customerId:
     type: string
     format: uuid
-  selectPaymentMethod:
+  selectPaymentMethodId:
     type: string
     format: uuid
     nullable: true

@@ -18,7 +18,7 @@ properties:
     minimum: 1
     maximum: 999
     example: 10
-description: The dimentions of the product
+description: The dimensions of the product
 required:
   -  length
   -  width
