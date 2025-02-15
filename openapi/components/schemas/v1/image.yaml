@@ -10,9 +10,8 @@ properties:
     maxLength: 500
     example: https://springframework.guru/wp-content/uploads/2019/08/spring-framework-guru-logo.jpg
   altText:
-    type:
-      - string
-      - 'null'
+    type: string
+    nullable: true
     minLength: 3
     maxLength: 255
   dateCreated:

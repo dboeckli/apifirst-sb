@@ -9,9 +9,8 @@ properties:
     description: First line of the address
     example: 123 Main Street
   addressLine2:
-    type:
-      - string
-      - 'null'
+    type: string
+    nullable: true
     minLength: 3
     maxLength: 100
     description: Second line of the address (optional)
