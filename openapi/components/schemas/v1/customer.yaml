@@ -16,6 +16,8 @@ properties:
     type: string
     nullable: true
     format: email
+    minLength: 5
+    maxLength: 255
     description: The customer's email address.
     example: dboeckli@gmail.com
   phone:
@@ -23,7 +25,7 @@ properties:
     nullable: true
     pattern: '^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$'
     minLength: 7
-    maxLength: 15
+    maxLength: 255
     description: The customer's phone number.
     example: +1 (123) 456-7890
   paymentMethods:
