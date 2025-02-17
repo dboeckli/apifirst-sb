@@ -1,0 +1,7 @@
+description: >-
+  Unable to complete request due to a conflict with the current state of the
+  target resource. May be due to constraint violation.
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yaml
