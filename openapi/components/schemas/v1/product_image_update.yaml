@@ -4,7 +4,6 @@ properties:
     type: string
     format: uuid
     description: System generated unique identifier for the image.
-    readOnly: true
     nullable: true
   url:
     type: string
@@ -18,9 +17,6 @@ properties:
     nullable: true
     minLength: 3
     maxLength: 255
-  dateCreated:
-    $ref: ../common/iso_timestamp.yaml
-  dateUpdated:
-    $ref: ../common/iso_timestamp.yaml
 required:
   - url
+  - id
