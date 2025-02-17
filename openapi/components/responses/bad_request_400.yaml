@@ -1,0 +1,7 @@
+description:  >-
+  Request was received but was invalid. Check format and content of the request. 
+  See the problem detail for more information.
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yaml

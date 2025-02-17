@@ -27,7 +27,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/v1/product.yaml
+          $ref: "../../components/schemas/v1/product_create.yaml"
   responses:
     '201':
       description: Created

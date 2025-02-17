@@ -1,0 +1,27 @@
+type: object
+properties:
+  description:
+    type: string
+    description: The description of the product
+    minLength: 3
+    maxLength: 255
+  dimensions:
+    $ref: dimensions.yaml
+  categories:
+    type: array
+    description: The category codes for the product
+    items:
+      type: string
+  images:
+    type: array
+    items:
+      $ref: image.yaml
+  price:
+    type: string
+    pattern: ^-?(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.\d+)?$
+  cost:
+    type: string
+    pattern: ^-?(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.\d+)?$
+required:
+  - description
+  - price

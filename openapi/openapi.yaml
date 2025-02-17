@@ -45,14 +45,19 @@ paths:
     $ref: 'paths/v1/customers.yaml'
   '/v1/customers/{customerId}':
     $ref: 'paths/v1/customers_{customerId}.yaml'
+
   '/v1/products':
     $ref: 'paths/v1/products.yaml'
   '/v1/products/{productId}':
     $ref: 'paths/v1/products{productId}.yaml'
+
   '/v1/orders':
     $ref: 'paths/v1/orders.yaml'
   '/v1/orders/{orderId}':
     $ref: 'paths/v1/orders{orderId}.yaml'
+
+  '/v1/categories':
+    $ref: 'paths/v1/categories.yaml'
 
 security:
   - basic_auth: []
