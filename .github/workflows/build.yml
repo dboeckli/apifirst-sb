@@ -42,5 +42,6 @@ jobs:
           echo "registry=https://npm.pkg.github.com/dboeckli" >> .npmrc
           echo "dboeckli:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
-          npm version $(date +%Y%m%d%H%M%S) --no-git-tag-version
+          VERSION=$(date +'%Y.%m.%d-%H%M%S')
+          npm version $VERSION --no-git-tag-version
           npm publish
