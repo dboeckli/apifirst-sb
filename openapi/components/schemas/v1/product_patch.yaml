@@ -1,0 +1,29 @@
+type: object
+properties:
+  description:
+    type: string
+    description: The description of the product
+    minLength: 3
+    maxLength: 255
+    nullable: true
+  dimensions:
+    $ref: product_dimensions_patch.yaml
+  categories:
+    type: array
+    description: The category codes for the product
+    items:
+      type: string
+    nullable: true
+  images:
+    type: array
+    nullable: true
+    items:
+      $ref: product_image_patch.yaml
+  price:
+    type: string
+    pattern: ^-?(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.\d+)?$
+    nullable: true
+  cost:
+    type: string
+    pattern: ^-?(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.\d+)?$
+    nullable: true
