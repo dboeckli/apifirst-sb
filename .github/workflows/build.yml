@@ -34,3 +34,13 @@ jobs:
         with:
           name: api-docs
           path: dist/bundle.yaml
+
+      - name: Publish to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "registry=https://npm.pkg.github.com/dboeckli" >> .npmrc
+          echo "dboeckli:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+          npm version $(date +%Y%m%d%H%M%S) --no-git-tag-version
+          npm publish
