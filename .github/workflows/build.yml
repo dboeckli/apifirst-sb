@@ -35,10 +35,17 @@ jobs:
           name: api-docs
           path: dist/bundle.yaml
 
+      - name: Prepare package for publishing
+        run: |
+          mkdir -p package
+          cp dist/bundle.yaml package/
+          echo '{"name": "@dboeckli/apifirst-sb","version": "0.0.0","files": ["bundle.yaml"]}' > package/package.json
+
       - name: Publish to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd package
           echo "registry=https://npm.pkg.github.com/dboeckli" >> .npmrc
           echo "dboeckli:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
