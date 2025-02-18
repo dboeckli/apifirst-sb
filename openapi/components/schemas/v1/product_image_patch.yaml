@@ -1,0 +1,21 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the image
+  url:
+    type: string
+    format: url
+    description: The url of the image
+    minLength: 5
+    maxLength: 500
+    nullable: true
+    example: https://springframework.guru/wp-content/uploads/2019/08/spring-framework-guru-logo.jpg
+  altText:
+    type: string
+    nullable: true
+    minLength: 3
+    maxLength: 255
+required:
+  -  id
