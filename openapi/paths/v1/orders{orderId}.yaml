@@ -38,13 +38,11 @@ put:
         schema:
           $ref: ../../components/schemas/v1/order_update.yaml
   responses:
-    '201':
+    '200':
       description: Order Created
-      headers:
-        Location:
+      content:
+        application/json:
           schema:
-            type: string
-          description: Path to the created Order
-          example: /v1/orders/27ca5995-f6e1-46bb-8f18-52458b7ed96e
+            $ref: ../../components/schemas/v1/order.yaml
     '400':
       description: Bad Request
