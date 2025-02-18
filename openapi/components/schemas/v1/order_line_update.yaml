@@ -1,0 +1,19 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the order line
+  productId:
+    type: string
+    format: uuid
+  orderQuantity:
+    type: integer
+    format: int32
+    minimum: 1
+    maximum: 1000
+    example: 2
+required:
+  - id
+  - productId
+  - orderQuantity
