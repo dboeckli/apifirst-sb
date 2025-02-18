@@ -1,0 +1,43 @@
+type: object
+nullable: true
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Unique identifier representing a specific customer address
+  addressLine1:
+    type: string
+    description: Address Line 1
+    minLength: 3
+    maxLength: 100
+    example: 123 Main Street
+    nullable: true
+  addressLine2:
+    type: string
+    description: Address Line 2
+    minLength: 3
+    maxLength: 100
+    nullable: true
+  city:
+    type: string
+    description: City
+    minLength: 2
+    maxLength: 100
+    example: St Petersburg
+    nullable: true
+  state:
+    type: string
+    description: 2 character state code
+    minLength: 2
+    maxLength: 2
+    example: FL
+    nullable: true
+  zip:
+    type: string
+    description: Zip Code
+    minLength: 5
+    maxLength: 10
+    example: 33701
+    nullable: true
+required:
+  - id

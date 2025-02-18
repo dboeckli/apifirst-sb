@@ -58,3 +58,36 @@ put:
       description: Bad Request
     '404':
       description: Not Found
+
+patch:
+  tags:
+    -  Customer
+  summary: Patch a customer by ID
+  description:  |
+    Patch a customer by ID
+  operationId: patchCustomerById
+  parameters:
+    - name: customerId
+      in: path
+      description: The ID of the customer to update
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/v1/customer_patch.yaml
+  responses:
+    '200':
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/v1/customer.yaml
+    '400':
+      description: Bad Request
+    '404':
+      description: Not Found

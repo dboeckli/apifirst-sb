@@ -1,0 +1,35 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: System generated unique identifier for the customer.
+    readOnly: true
+    nullable: true
+  name:
+    $ref: customer_name_patch.yaml
+  shipToAddress:
+    $ref: customer_address_patch.yaml
+  billToAddress:
+    $ref: customer_address_patch.yaml
+  email:
+    type: string
+    nullable: true
+    format: email
+    minLength: 5
+    maxLength: 255
+    description: The customer's email address.
+    example: dboeckli@gmail.com
+  phone:
+    type: string
+    nullable: true
+    pattern: '^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$'
+    minLength: 7
+    maxLength: 255
+    description: The customer's phone number.
+    example: +1 (123) 456-7890
+  paymentMethods:
+    type: array
+    nullable: true
+    items:
+      $ref: customer_payment_method_patch.yaml
