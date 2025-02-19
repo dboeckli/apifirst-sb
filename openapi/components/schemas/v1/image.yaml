@@ -1,11 +1,7 @@
 type: object
 properties:
   id:
-    type: string
-    format: uuid
-    description: System generated unique identifier for the image.
-    readOnly: true
-    nullable: true
+    $ref: ../common/uuid_id.yaml
   url:
     type: string
     format: url
