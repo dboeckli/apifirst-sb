@@ -14,9 +14,9 @@ get:
           schema:
             $ref: ../../components/schemas/v1/customer.yaml
     '400':
-      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml
     '404':
-      description: Not Found
+      $ref: ../../components/responses/Problem.yaml
 
 put:
   tags:
