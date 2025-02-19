@@ -34,13 +34,7 @@ put:
     Update a customer by ID
   operationId: updateCustomerById
   parameters:
-    - name: customerId
-      in: path
-      description: The ID of the customer to update
-      required: true
-      schema:
-        type: string
-        format: uuid
+    - $ref: ../../components/parameters/customer_id.yaml
   requestBody:
     required: true
     content:
@@ -67,13 +61,7 @@ patch:
     Patch a customer by ID
   operationId: patchCustomerById
   parameters:
-    - name: customerId
-      in: path
-      description: The ID of the customer to update
-      required: true
-      schema:
-        type: string
-        format: uuid
+    - $ref: ../../components/parameters/customer_id.yaml
   requestBody:
     required: true
     content:
