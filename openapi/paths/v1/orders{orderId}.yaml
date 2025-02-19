@@ -67,3 +67,20 @@ patch:
       description: Bad Request
     '404':
       description: Not Found
+
+delete:
+  tags:
+    -  Order
+  summary: Delete a Order by ID
+  description:  |
+    Delete a Order by ID
+  operationId: deleteOrderById
+  parameters:
+    - $ref: ../../components/parameters/order_id.yaml
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: Bad Request
+    '404':
+      description: Not Found
