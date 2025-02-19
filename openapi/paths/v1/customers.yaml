@@ -12,11 +12,7 @@ get:
           schema:
             $ref: ../../components/schemas/v1/customer_list.yaml
     '404':
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/schemas/Problem.yaml
+      $ref: ../../components/responses/not_found_404.yaml
 post:
   tags:
     -  Customer
@@ -39,8 +35,4 @@ post:
             format: uri
             example: /v1/customers/27ca5995-f6e1-46bb-8f18-52458b7ed96e
     '400':
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/schemas/Problem.yaml
+      $ref: ../../components/responses/bad_request_400.yaml

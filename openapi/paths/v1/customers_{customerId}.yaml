@@ -14,9 +14,9 @@ get:
           schema:
             $ref: ../../components/schemas/v1/customer.yaml
     '400':
-      $ref: ../../components/responses/Problem.yaml
+      $ref: ../../components/responses/bad_request_400.yaml
     '404':
-      $ref: ../../components/responses/Problem.yaml
+      $ref: "../../components/responses/not_found_404.yaml"
 
 put:
   tags:
@@ -41,9 +41,9 @@ put:
           schema:
             $ref: ../../components/schemas/v1/customer.yaml
     '400':
-      description: Bad Request
+      $ref: ../../components/responses/bad_request_400.yaml
     '404':
-      description: Not Found
+      $ref: ../../components/responses/not_found_404.yaml
 
 patch:
   tags:
@@ -68,9 +68,9 @@ patch:
           schema:
             $ref: ../../components/schemas/v1/customer.yaml
     '400':
-      description: Bad Request
+      $ref: ../../components/responses/bad_request_400.yaml
     '404':
-      description: Not Found
+      $ref: ../../components/responses/not_found_404.yaml
 
 delete:
   tags:
@@ -85,8 +85,8 @@ delete:
     '204':
       description: No Content
     '400':
-      description: Bad Request
+      $ref: ../../components/responses/bad_request_400.yaml
     '404':
-      description: Not Found
+      $ref: ../../components/responses/not_found_404.yaml
     '409':
-      description: Conflict
+      $ref: ../../components/responses/conflict_409.yaml
