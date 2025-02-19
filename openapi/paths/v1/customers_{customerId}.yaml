@@ -79,3 +79,20 @@ patch:
       description: Bad Request
     '404':
       description: Not Found
+
+delete:
+  tags:
+    -  Customer
+  summary: Delete a customer by ID
+  description:  |
+    Delete a customer by ID
+  operationId: deleteCustomerById
+  parameters:
+    - $ref: ../../components/parameters/customer_id.yaml
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: Bad Request
+    '404':
+      description: Not Found
