@@ -40,6 +40,8 @@ put:
             $ref: ../../components/schemas/v1/order.yaml
     '400':
       description: Bad Request
+    '404':
+      description: Not Found
 
 patch:
   tags:
