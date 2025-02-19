@@ -15,16 +15,8 @@ get:
             $ref: ../../components/schemas/v1/customer.yaml
     '400':
       description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/schemas/Problem.yaml
     '404':
       description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/schemas/Problem.yaml
 
 put:
   tags:
