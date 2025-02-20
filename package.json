@@ -1,5 +1,5 @@
 {
-  "name": "acme-api",
+  "name": "dboeckli",
   "version": "1.0.0",
   "dependencies": {
     "@redocly/cli": "1.29.0"
