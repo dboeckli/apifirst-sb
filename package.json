@@ -4,7 +4,10 @@
   "dependencies": {
     "@redocly/cli": "1.29.0"
   },
-  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "private": false,
   "scripts": {
     "start": "redocly preview-docs",
     "build": "redocly bundle openapi/openapi.yaml -o dist/bundle.yaml",
