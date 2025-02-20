@@ -41,14 +41,8 @@ jobs:
 
       - name: Update version
         run: |
-          if [[ ${{ github.ref }} == refs/heads/feature/* ]]; then
-            # For feature branches, use git hash
-            SHORT_SHA=$(git rev-parse --short HEAD)
-            npm version "0.0.0-${SHORT_SHA}" --no-git-tag-version
-          else
-            # For main branches, increment patch version
-            npm version patch --no-git-tag-version
-          fi
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          npm version "0.0.0-${SHORT_SHA}" --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")
 
           echo "New version: $VERSION"
