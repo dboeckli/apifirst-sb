@@ -39,6 +39,13 @@ jobs:
       #    echo "@dboeckli:registry=https://npm.pkg.github.com" >> .npmrc
       #    echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
+      - name: Update version
+        run: |
+          npm version patch --no-git-tag-version
+          VERSION=$(node -p "require('./package.json').version")
+          echo "New version: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Publish artifact
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
