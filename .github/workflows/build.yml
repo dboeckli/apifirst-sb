@@ -41,16 +41,25 @@ jobs:
 
       - name: Update version
         run: |
-          npm version patch --no-git-tag-version
+          if [[ ${{ github.ref }} == refs/heads/feature/* ]]; then
+            # For feature branches, use git hash
+            SHORT_SHA=$(git rev-parse --short HEAD)
+            npm version "0.0.0-${SHORT_SHA}" --no-git-tag-version
+          else
+            # For main branches, increment patch version
+            npm version patch --no-git-tag-version
+          fi
           VERSION=$(node -p "require('./package.json').version")
+
           echo "New version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Publish artifact
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/development'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish
+        run: |
+          npm publish
+          echo ":maple_leaf: Published Version: ${{ env.VERSION }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
