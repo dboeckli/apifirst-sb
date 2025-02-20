@@ -5,7 +5,7 @@
     "@redocly/cli": "1.29.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/dboeckli"
   },
   "private": false,
   "scripts": {
