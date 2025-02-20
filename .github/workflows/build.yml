@@ -28,11 +28,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@dboeckli'
+
       - name: Lint API documentation
         run: npm run test
 
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@dboeckli'
+
       - name: Build API documentation
         run: npm run build
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@dboeckli'
 
       - name: Publish artifact
         env:
