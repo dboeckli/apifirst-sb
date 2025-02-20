@@ -34,10 +34,10 @@ jobs:
       - name: Build API documentation
         run: npm run build
 
-      - name: Setup .npmrc file
-        run: |
-          echo "@dboeckli:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc  
+      #- name: Setup .npmrc file
+      #  run: |
+      #    echo "@dboeckli:registry=https://npm.pkg.github.com" >> .npmrc
+      #    echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
       - name: Publish artifact
         env:
