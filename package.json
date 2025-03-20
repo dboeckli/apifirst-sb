@@ -2,7 +2,7 @@
   "name": "@dboeckli/apifirst-sb",
   "version": "1.0.0",
   "dependencies": {
-    "@redocly/cli": "1.33.1"
+    "@redocly/cli": "1.34.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
