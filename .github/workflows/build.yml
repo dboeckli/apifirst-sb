@@ -49,7 +49,7 @@ jobs:
           fi
           
           # Ensure the version is semver-compliant
-          NEW_VERSION=$(echo "$NEW_VERSION" | sed 's/[^0-9A-Za-z.-+]/-/g')
+          NEW_VERSION=$(echo "$NEW_VERSION" | sed 's/[^0-9A-Za-z.+\-]/-/g')          
           
           npm version "$NEW_VERSION" --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")
