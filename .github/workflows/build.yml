@@ -47,9 +47,11 @@ jobs:
             TIMESTAMP=$(date -u +"%Y%m%d%H%M")
             NEW_VERSION="0.1.${BUILD_NUMBER}-feature+${SHORT_SHA}.${TIMESTAMP}"
           fi
+          echo "Generated version: $NEW_VERSION"
           
           # Ensure the version is semver-compliant
           NEW_VERSION=$(echo "$NEW_VERSION" | sed 's/[^0-9A-Za-z.+\-]/-/g')          
+          echo "Generated version after sed: $NEW_VERSION"
           
           npm version "$NEW_VERSION" --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")
