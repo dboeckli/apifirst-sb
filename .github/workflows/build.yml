@@ -67,7 +67,7 @@ jobs:
           echo ":maple_leaf: Published Version: ${{ env.VERSION }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: api-docs
           path: dist/bundle.yaml
