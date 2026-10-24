@@ -1,5 +1,6 @@
 # Dir for bundles
 dist
+_site
 node_modules
 /.idea/
 .review/

@@ -8,6 +8,8 @@ Pure OpenAPI 3.0.3 definition — no application code or tests. Entry point is
 - `npm ci` — reproducible install (CI and sandbox). Use `npm install` only when changing dependencies.
 - `npm test` — `redocly lint`; the only verification. Exits 0 with one expected config warning.
 - `npm run build` — bundles to `dist/bundle.yaml` (gitignored).
+- `npm run build:docs` — renders the API reference to `_site/index.html` (gitignored); used by the
+  Pages workflow.
 - `npm start` is broken with the pinned CLI 2.x (`preview-docs` was removed). Preview locally with
   `npx redocly build-docs openapi/openapi.yaml -o out.html` (verified) or `npx redocly preview`.
 
@@ -47,6 +49,8 @@ assume new spec edits caused this warning.
   initial branch, unused). There is no `master`; `release/**` is unused.
 - Workflow triggers on push to `main|master|development|feature/**|release/**`, PRs to
   `main|master|development`, and nightly. Only PRs into `development` are used in practice.
+- `.github/workflows/pages.yml` separately deploys the rendered docs and `bundle.yaml` to GitHub Pages
+  (`https://dboeckli.github.io/apifirst-sb/`) on push to `development` and `workflow_dispatch` only.
 - CI order: `npm ci` -> `npm test` -> `npm run build` -> rewrite version -> `npm publish` to GitHub
   Packages (`@dboeckli` on npm.pkg.github.com) -> upload `dist/bundle.yaml`.
 - Version scheme: `development` -> `1.0.<run>-dev.<sha>`; all other branches and PRs ->
