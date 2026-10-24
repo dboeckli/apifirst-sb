@@ -42,14 +42,21 @@ colors currently have no effect; move them under a top-level `openapi:` block if
 assume new spec edits caused this warning.
 
 ## CI / release
-- Default branch is `development`. Workflow triggers on push to
-  `main|master|development|feature/**|release/**`, PRs to `main|master|development`, and nightly.
+- Default and integration branch is `development`; merge
+  `feature/<issue-number>-<short-text>` branches into it via PR. Never merge to `main` (legacy
+  initial branch, unused). There is no `master`; `release/**` is unused.
+- Workflow triggers on push to `main|master|development|feature/**|release/**`, PRs to
+  `main|master|development`, and nightly. Only PRs into `development` are used in practice.
 - CI order: `npm ci` -> `npm test` -> `npm run build` -> rewrite version -> `npm publish` to GitHub
   Packages (`@dboeckli` on npm.pkg.github.com) -> upload `dist/bundle.yaml`.
-- Every push to `development` or `feature/**` publishes a package, so work on `feature/*` branches.
+- Version scheme: `development` -> `1.0.<run>-dev.<sha>`; all other branches and PRs ->
+  `0.1.<run>-feature.<sha>.<timestamp_utc>`. `info.version` in `openapi/openapi.yaml` is independent.
+- Every CI run reaches `npm publish` (no event guard): feature pushes, same-repo PRs, and the nightly
+  run all publish.
 - CI uses Node 22; `@redocly/cli` is pinned exactly (2.5.0) and updated by Renovate, where the
   `github-actions` manager is disabled. Dependabot only manages GitHub Actions.
+- Full branch and version details: README section "Branching and versioning".
 
 ## Docs to distrust
-Apart from the Sandbox section, `README.md` and `openapi/**/README.md` are generic Redocly template docs.
-Trust `package.json` and `redocly.yaml` over their prose.
+`docs/redocly-starter.md` and `openapi/**/README.md` are generic Redocly template docs. Trust
+`package.json`, `redocly.yaml`, and the rest of the README over their prose.
