@@ -18,14 +18,39 @@ Go to:
 
 ### Usage
 
-#### `npm start`
-Starts the reference docs preview server.
+#### `npm start` (currently broken)
+Redocly CLI 2.x removed the `preview-docs` command. Build static docs locally instead:
+`npx redocly build-docs openapi/openapi.yaml -o out.html`.
 
 #### `npm run build`
 Bundles the definition to the dist folder.
 
 #### `npm test`
 Validates the definition.
+
+## Sandbox (local development environment)
+
+This repo is provisioned by [opencode-sandbox-kit](https://codeberg.org/dboeckli/opencode-sandbox-kit) and runs
+inside a Docker sandbox. The sandbox mounts this repo, starts the agent, and connects the IntelliJ MCP server.
+Run the `sbx` commands in PowerShell on the Windows host.
+
+Allow the kit source once:
+
+```powershell
+sbx settings set kit.allowedSources --% "[\"docker.io/\",\"codeberg.org/dboeckli/\"]"
+```
+
+Start a new OpenCode sandbox:
+
+```powershell
+sbx run opencode `
+    --kit "git+https://codeberg.org/dboeckli/opencode-sandbox-kit.git#dir=opencode-agent" `
+    --template docker.io/domboeckli/sbx-opencode-tooling:latest `
+    --skills=off `
+    --static-mcp idea,k8s,docker `
+    . `
+    "C:\development\maven-repo:ro"
+```
 
 ## Contribution Guide
 
@@ -39,7 +64,7 @@ good place to start.
 Update this contribution guide if you
 adjust the file/folder organization.
 
-The `.redocly.yaml` controls settings for various
+The `redocly.yaml` controls settings for various
 tools including the lint tool and the reference
 docs engine.  Open it to find examples and
 [read the docs](https://redocly.com/docs/cli/configuration/)
