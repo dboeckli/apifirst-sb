@@ -23,7 +23,7 @@ properties:
     minLength: 7
     maxLength: 255
     description: The customer's phone number.
-    example: +1 (123) 456-7890
+    example: "(123) 456-7890"
   paymentMethods:
     type: array
     nullable: true
