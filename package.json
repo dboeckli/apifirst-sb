@@ -9,8 +9,8 @@
   },
   "private": false,
   "scripts": {
-    "start": "redocly preview-docs",
-    "build": "redocly bundle openapi/openapi.yaml -o dist/bundle.yaml",
-    "test": "redocly lint"
+    "start": "node node_modules/@redocly/cli/bin/cli.js preview-docs",
+    "build": "node node_modules/@redocly/cli/bin/cli.js bundle openapi/openapi.yaml -o dist/bundle.yaml",
+    "test": "node node_modules/@redocly/cli/bin/cli.js lint"
   }
 }
