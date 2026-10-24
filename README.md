@@ -51,17 +51,18 @@ npm run build
 
 | Branch | Version |
 | --- | --- |
-| `development` | `1.0.<run_number>-dev.<short_sha>` |
-| any other branch | `0.1.<run_number>-feature.<short_sha>.<timestamp_utc>` |
+| `development` | `<major>.<minor>.<run_number>-dev.<short_sha>` |
+| any other branch | `<major>.<minor>.<run_number>-feature.<short_sha>.<timestamp_utc>` |
 
-- Feature builds use the `0.1` line and include a UTC timestamp; they are not prereleases of the
-  `1.0` development line.
+- `<major>.<minor>` is taken from the committed `package.json` version (currently `1.1`). Bump
+  `package.json` to move the whole CI line, e.g. to `1.2.0` for the next minor line.
+- Feature builds include a UTC timestamp and are previews of the same line as `development`.
 - `<run_number>` is `github.run_number`, not a release counter. The timestamp is UTC `yyyyMMddHHmm`.
-- `npm version ... --no-git-tag-version` changes only the CI workspace; `package.json` stays at
-  `1.0.0` in Git. No Git tag or GitHub Release is created.
+- `npm version ... --no-git-tag-version` changes only the CI workspace; the committed base version
+  in `package.json` (currently `1.1.0`) is not changed by CI. No Git tag or GitHub Release is created.
 - `info.version` in `openapi/openapi.yaml` is maintained manually and is independent of the package
   version. CI does not update it.
-- `release/**`, `main`, and PRs also use the `0.1...-feature...` scheme; there is no dedicated
+- `release/**`, `main`, and PRs also use the `...-feature...` scheme; there is no dedicated
   release versioning.
 - The publish step has no event guard: feature pushes, same-repo PRs, and the nightly run all
   publish (or attempt to publish) a package.

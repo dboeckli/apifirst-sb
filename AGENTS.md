@@ -53,8 +53,10 @@ assume new spec edits caused this warning.
   (`https://dboeckli.github.io/apifirst-sb/`) on push to `development` and `workflow_dispatch` only.
 - CI order: `npm ci` -> `npm test` -> `npm run build` -> rewrite version -> `npm publish` to GitHub
   Packages (`@dboeckli` on npm.pkg.github.com) -> upload `dist/bundle.yaml`.
-- Version scheme: `development` -> `1.0.<run>-dev.<sha>`; all other branches and PRs ->
-  `0.1.<run>-feature.<sha>.<timestamp_utc>`. `info.version` in `openapi/openapi.yaml` is independent.
+- Version scheme: `<major>.<minor>` comes from the committed `package.json` version (currently `1.1`);
+  `development` -> `<major>.<minor>.<run>-dev.<sha>`, all other branches and PRs ->
+  `<major>.<minor>.<run>-feature.<sha>.<timestamp_utc>`. `info.version` in `openapi/openapi.yaml` is
+  independent.
 - Every CI run reaches `npm publish` (no event guard): feature pushes, same-repo PRs, and the nightly
   run all publish.
 - CI uses Node 22; `@redocly/cli` is pinned exactly (2.5.0) and updated by Renovate, where the
