@@ -1,8 +1,17 @@
 # API First with Spring Boot
 
+**API Docs:** <https://dboeckli.github.io/apifirst-sb/>
+
 OpenAPI 3.0.3 definition for the example Customer, Product, and Order API. This repo contains no
-application code: Redocly CLI lints and bundles the spec. CI publishes the package to GitHub Packages
-and uploads the bundled spec as a workflow artifact.
+application code: Redocly CLI lints and bundles the spec. CI publishes the package to GitHub Packages,
+uploads the bundled spec as a workflow artifact, and deploys the rendered docs to GitHub Pages.
+
+## Published docs
+
+- Rendered API reference: <https://dboeckli.github.io/apifirst-sb/>
+- Bundled spec download: <https://dboeckli.github.io/apifirst-sb/bundle.yaml>
+- Deploy trigger: push to `development` and manual `workflow_dispatch` of `OpenAPI Pages`
+  (`.github/workflows/pages.yml`). Feature branches do not deploy, so they cannot overwrite the docs.
 
 ## Quick start
 
@@ -14,6 +23,7 @@ npm run build
 
 - `npm test` runs `redocly lint` and is the only verification.
 - `npm run build` writes `dist/bundle.yaml` (gitignored).
+- `npm run build:docs` writes the rendered API reference to `_site/index.html` (gitignored).
 - `npm start` is broken with Redocly CLI 2.x (`preview-docs` was removed). Render static docs with
   `npx redocly build-docs openapi/openapi.yaml -o out.html` instead.
 

@@ -11,6 +11,7 @@
   "scripts": {
     "start": "node node_modules/@redocly/cli/bin/cli.js preview-docs",
     "build": "node node_modules/@redocly/cli/bin/cli.js bundle openapi/openapi.yaml -o dist/bundle.yaml",
+    "build:docs": "node node_modules/@redocly/cli/bin/cli.js build-docs openapi/openapi.yaml -o _site/index.html",
     "test": "node node_modules/@redocly/cli/bin/cli.js lint"
   }
 }
