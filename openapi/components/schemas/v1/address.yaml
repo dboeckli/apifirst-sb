@@ -31,7 +31,7 @@ properties:
     minLength: 4
     maxLength: 10
     description: Zip Code
-    example: 10001
+    example: "10001"
   dateCreated:
     $ref: ../common/iso_timestamp.yaml
   dateUpdated:

@@ -35,6 +35,6 @@ post:
           schema:
             type: string
             format: uri
-            example: /v1/orders/27ca5995-f6e1-46bb-8f18-52458b7ed96e
+            example: https://springframework.guru/api/v1/orders/27ca5995-f6e1-46bb-8f18-52458b7ed96e
     '400':
       $ref: ../../components/responses/bad_request_400.yaml

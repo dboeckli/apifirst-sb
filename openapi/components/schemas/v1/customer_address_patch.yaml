@@ -37,7 +37,7 @@ properties:
     description: Zip Code
     minLength: 5
     maxLength: 10
-    example: 33701
+    example: "33701"
     nullable: true
 required:
   - id
