@@ -1,263 +1,98 @@
-# OpenAPI Definition Starter
+# API First with Spring Boot
 
-## How to use this starter
+**API Docs:** <https://dboeckli.github.io/apifirst-sb/>
 
-Go to:
-- https://app.cloud.redocly.com/
-- https://app.cloud.redocly.com/org/dboeckli/overview
+OpenAPI 3.0.3 definition for the example Customer, Product, and Order API. This repo contains no
+application code: Redocly CLI lints and bundles the spec. CI publishes the package to GitHub Packages,
+uploads the bundled spec as a workflow artifact, and deploys the rendered docs to GitHub Pages.
 
-![Click use template button](https://user-images.githubusercontent.com/3975738/92927304-12e35d80-f446-11ea-9bd3-a0f8a69792d0.png)
+## Published docs
 
-## Working on your OpenAPI Definition
+- Rendered API reference: <https://dboeckli.github.io/apifirst-sb/>
+- Bundled spec download: <https://dboeckli.github.io/apifirst-sb/bundle.yaml>
+- Deploy trigger: push to `development` and manual `workflow_dispatch` of `OpenAPI Pages`
+  (`.github/workflows/pages.yml`). Feature branches do not deploy, so they cannot overwrite the docs.
 
-### Install
+## Quick start
 
-1. Install [Node JS](https://nodejs.org/).
-2. Clone this repo and run `npm install` in the repo root.
-3. Install [Redocly-Cli](https://redocly.com/docs/cli/installation)
-
-### Usage
-
-#### `npm start`
-Starts the reference docs preview server.
-
-#### `npm run build`
-Bundles the definition to the dist folder.
-
-#### `npm test`
-Validates the definition.
-
-## Contribution Guide
-
-Below is a sample contribution guide. The tools
-in the repository don't restrict you to any
-specific structure. Adjust the contribution guide
-to match your own structure. However, if you
-don't have a structure in mind, this is a
-good place to start.
-
-Update this contribution guide if you
-adjust the file/folder organization.
-
-The `.redocly.yaml` controls settings for various
-tools including the lint tool and the reference
-docs engine.  Open it to find examples and
-[read the docs](https://redocly.com/docs/cli/configuration/)
-for more information.
-
-
-### Schemas
-
-#### Adding Schemas
-
-1. Navigate to the `openapi/components/schemas` folder.
-2. Add a file named as you wish to name the schema.
-3. Define the schema.
-4. Refer to the schema using the `$ref` (see example below).
-
-##### Example Schema
-This is a very simple schema example:
-```yaml
-type: string
-description: The resource ID. Defaults to UUID v4
-maxLength: 50
-example: 4f6cf35x-2c4y-483z-a0a9-158621f77a21
-```
-This is a more complex schema example:
-```yaml
-type: object
-properties:
-  id:
-    description: The customer identifier string
-    readOnly: true
-    allOf:
-      - $ref: ./ResourceId.yaml
-  websiteId:
-    description: The website's ID
-    allOf:
-      - $ref: ./ResourceId.yaml
-  paymentToken:
-    type: string
-    writeOnly: true
-    description: |
-      A write-only payment token; if supplied, it will be converted into a
-      payment instrument and be set as the `defaultPaymentInstrument`. The
-      value of this property will override the `defaultPaymentInstrument`
-      in the case that both are supplied. The token may only be used once
-      before it is expired.
-  defaultPaymentInstrument:
-    $ref: ./PaymentInstrument.yaml
-  createdTime:
-    description: The customer created time
-    allOf:
-      - $ref: ./ServerTimestamp.yaml
-  updatedTime:
-    description: The customer updated time
-    allOf:
-      - $ref: ./ServerTimestamp.yaml
-  tags:
-    description: A list of customer's tags
-    readOnly: true
-    type: array
-    items:
-      $ref: ./Tags/Tag.yaml
-  revision:
-    description: >
-      The number of times the customer data has been modified.
-
-      The revision is useful when analyzing webhook data to determine if the
-      change takes precedence over the current representation.
-    type: integer
-    readOnly: true
-  _links:
-    type: array
-    description: The links related to resource
-    readOnly: true
-    minItems: 3
-    items:
-      anyOf:
-        - $ref: ./Links/SelfLink.yaml
-        - $ref: ./Links/NotesLink.yaml
-        - $ref: ./Links/DefaultPaymentInstrumentLink.yaml
-        - $ref: ./Links/LeadSourceLink.yaml
-        - $ref: ./Links/WebsiteLink.yaml
-  _embedded:
-    type: array
-    description: >-
-      Any embedded objects available that are requested by the `expand`
-      querystring parameter.
-    readOnly: true
-    minItems: 1
-    items:
-      anyOf:
-        - $ref: ./Embeds/LeadSourceEmbed.yaml
-
+```bash
+npm ci
+npm test
+npm run build
 ```
 
-If you have an JSON example, you can convert it to JSON schema using Redocly's [JSON to JSON schema tool](https://redocly.com/tools/json-to-json-schema/).
+- `npm test` runs `redocly lint` and is the only verification.
+- `npm run build` writes `dist/bundle.yaml` (gitignored).
+- `npm run build:docs` writes the rendered API reference to `_site/index.html` (gitignored).
+- `npm start` is broken with Redocly CLI 2.x (`preview-docs` was removed). Render static docs with
+  `npx redocly build-docs openapi/openapi.yaml -o out.html` instead.
 
-##### Using the `$ref`
+## Layout
 
-Notice in the complex example above the schema definition itself has `$ref` links to other schemas defined.
+| Path | Purpose |
+| --- | --- |
+| `openapi/openapi.yaml` | Entry point; registers every path and component |
+| `openapi/paths/v1/` | One file per path; each file must be registered in `openapi.yaml` |
+| `openapi/components/{schemas,responses,parameters,headers}/` | Reusable components |
+| `redocly.yaml` | Lint rules and API registration (`sample@v1`) |
+| `dist/bundle.yaml` | Generated bundle, not committed |
 
-Here is a small excerpt with an example:
+## Branching and versioning
 
-```yaml
-defaultPaymentInstrument:
-  $ref: ./PaymentInstrument.yaml
+- `development` is the default and integration branch. Feature branches are merged into it via PR.
+- Work on `feature/<topic>`. With an issue, use `feature/<issue-number>-<short-text>` (for example
+  `feature/141-sandbox-onboarding`).
+- `main` is the legacy initial branch and is not used: nothing is merged into it. There is no
+  `master`; `release/**` is accepted by CI but not used.
+- CI runs on pushes to `main`, `master`, `development`, `feature/**`, `release/**`; PRs to `main`,
+  `master`, `development`; and nightly at 02:05 UTC. In practice, only PRs into `development` are
+  used.
+- CI derives the package version and publishes `@dboeckli/apifirst-sb` to GitHub Packages:
+
+| Branch | Version |
+| --- | --- |
+| `development` | `<major>.<minor>.<run_number>-dev.<short_sha>` |
+| any other branch | `<major>.<minor>.<run_number>-feature.<short_sha>.<timestamp_utc>` |
+
+- `<major>.<minor>` is taken from the committed `package.json` version (currently `1.1`). Bump
+  `package.json` to move the whole CI line, e.g. to `1.2.0` for the next minor line.
+- Feature builds include a UTC timestamp and are previews of the same line as `development`.
+- `<run_number>` is `github.run_number`, not a release counter. The timestamp is UTC `yyyyMMddHHmm`.
+- `npm version ... --no-git-tag-version` changes only the CI workspace; the committed base version
+  in `package.json` (currently `1.1.0`) is not changed by CI. No Git tag or GitHub Release is created.
+- `info.version` in `openapi/openapi.yaml` is maintained manually and is independent of the package
+  version. CI does not update it.
+- `release/**`, `main`, and PRs also use the `...-feature...` scheme; there is no dedicated
+  release versioning.
+- The publish step has no event guard: feature pushes, same-repo PRs, and the nightly run all
+  publish (or attempt to publish) a package.
+
+## Sandbox (local development environment)
+
+This repo is provisioned by [opencode-sandbox-kit](https://codeberg.org/dboeckli/opencode-sandbox-kit) and runs
+inside a Docker sandbox. The sandbox mounts this repo, starts the agent, and connects the IntelliJ MCP server.
+Run the `sbx` commands in PowerShell on the Windows host.
+
+Allow the kit source once:
+
+```powershell
+sbx settings set kit.allowedSources --% "[\"docker.io/\",\"codeberg.org/dboeckli/\"]"
 ```
 
-The value of the `$ref` is the path to the other schema definition.
+Start a new OpenCode sandbox:
 
-You may use `$ref`s to compose schema from other existing schema to avoid duplication.
-
-You will use `$ref`s to reference schema from your path definitions.
-
-#### Editing Schemas
-
-1. Navigate to the `openapi/components/schemas` folder.
-2. Open the file you wish to edit.
-3. Edit.
-
-### Paths
-
-#### Adding a Path
-
-1. Navigate to the `openapi/paths` folder.
-2. Add a new YAML file named like your URL endpoint except replacing `/` with `_` (or whichever character you prefer) and putting path parameters into curly braces like `{example}`.
-3. Add the path and a ref to it inside of your `openapi.yaml` file inside of the `openapi` folder.
-
-Example addition to the `openapi.yaml` file:
-```yaml
-'/customers/{id}':
-  $ref: './paths/customers_{id}.yaml'
+```powershell
+sbx run opencode `
+    --kit "git+https://codeberg.org/dboeckli/opencode-sandbox-kit.git#dir=opencode-agent" `
+    --template docker.io/domboeckli/sbx-opencode-tooling:latest `
+    --skills=off `
+    --static-mcp idea,k8s,docker `
+    . `
+    "C:\development\maven-repo:ro"
 ```
 
-Here is an example of a YAML file named `customers_{id}.yaml` in the `paths` folder:
+## Documentation
 
-```yaml
-get:
-  tags:
-    - Customers
-  summary: Retrieve a list of customers
-  operationId: GetCustomerCollection
-  description: |
-    You can have a markdown description here.
-  parameters:
-    - $ref: ../components/parameters/collectionLimit.yaml
-    - $ref: ../components/parameters/collectionOffset.yaml
-    - $ref: ../components/parameters/collectionFilter.yaml
-    - $ref: ../components/parameters/collectionQuery.yaml
-    - $ref: ../components/parameters/collectionExpand.yaml
-    - $ref: ../components/parameters/collectionFields.yaml
-  responses:
-    '200':
-      description: A list of Customers was retrieved successfully
-      headers:
-        Rate-Limit-Limit:
-          $ref: ../components/headers/Rate-Limit-Limit.yaml
-        Rate-Limit-Remaining:
-          $ref: ../components/headers/Rate-Limit-Remaining.yaml
-        Rate-Limit-Reset:
-          $ref: ../components/headers/Rate-Limit-Reset.yaml
-        Pagination-Total:
-          $ref: ../components/headers/Pagination-Total.yaml
-        Pagination-Limit:
-          $ref: ../components/headers/Pagination-Limit.yaml
-        Pagination-Offset:
-          $ref: ../components/headers/Pagination-Offset.yaml
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: ../components/schemas/Customer.yaml
-        text/csv:
-          schema:
-            type: array
-            items:
-              $ref: ../components/schemas/Customer.yaml
-    '401':
-      $ref: ../components/responses/AccessForbidden.yaml
-  x-code-samples:
-    - lang: PHP
-      source:
-        $ref: ../code_samples/PHP/customers/get.php
-post:
-  tags:
-    - Customers
-  summary: Create a customer (without an ID)
-  operationId: PostCustomer
-  description: Another markdown description here.
-  requestBody:
-    $ref: ../components/requestBodies/Customer.yaml
-  responses:
-    '201':
-      $ref: ../components/responses/Customer.yaml
-    '401':
-      $ref: ../components/responses/AccessForbidden.yaml
-    '409':
-      $ref: ../components/responses/Conflict.yaml
-    '422':
-      $ref: ../components/responses/InvalidDataError.yaml
-  x-code-samples:
-    - lang: PHP
-      source:
-        $ref: ../code_samples/PHP/customers/post.php
-```
-
-You'll see extensive usage of `$ref`s in this example to different types of components including schemas.
-
-You'll also notice `$ref`s to code samples.
-
-### Code samples
-
-Automated code sample generations is enabled in the Redocly configuration file. Add manual code samples by the following process:
-
-1. Navigate to the `openapi/code_samples` folder.
-2. Navigate to the `<language>` (e.g. PHP) sub-folder.
-3. Navigate to the `path` folder, and add ref to the code sample.
-
-You can add languages by adding new folders at the appropriate path level.
-
-More details inside the `code_samples` folder README.
+- [Spec authoring / Redocly starter guide](docs/redocly-starter.md) — schemas, paths, `$ref`, code
+  samples, and starter setup
+- [AGENTS.md](AGENTS.md) — instructions for AI/agent sessions
